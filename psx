@@ -1,0 +1,90 @@
+#!/bin/bash
+
+# Подключение переменных
+source $HOME/psx/psx.conf
+
+# Определяется какой профиль применить
+function run(){
+    if [[ -f  ${psxfs['profiles']}/$profile.sh ]]
+    then
+        source ${psxfs['profiles']}/$profile.sh
+    else
+        source ${psxfs['profiles']}/default.sh
+    fi
+}
+
+case $1 in
+    "profile")		# Установить профиль указанный вторым аргументом
+        profile=$2
+        run
+        ;;
+    "note")		# Установить заметку указанную вторым аргументом
+        note=$2
+        run
+        ;;
+    "time")		# Установить или отключить отображение времени
+        case $2 in
+            "set")
+                timeSet="true"
+                run
+                ;;
+            "unset")
+                timeSet=""
+                run
+                ;;
+        esac
+        ;;
+    "reset" | "run")	# Запустить или перезапустить psx
+        profile=""
+        run
+        ;;
+esac
+
+
+# Вывод help'а
+if [[ $1 == "" || $1 == "--help" || $1 == "-h" || $1 == "help" ]]	# Что такое psx
+then
+        echo -e """\e[1;35mpsx\e[m - configurator command prompt
+Usage: psx [--help] <command> [args]
+
+These are common psx commands used:
+    psx reset		reset command prompt settings
+    psx note		add note
+    psx profile		change profile command prompt
+    psx time		setup time on command prompt
+    psx help        	get help
+"""
+
+elif [[ $2 == "-h" || $2 == "--help" ]]
+then
+  case $1 in
+    "profile")		# Что такое psx profile
+        echo -e """\
+\e[1;35mpsx profile\e[m - change profile command prompt
+Usage: psx profile [--help] <name profile>
+
+available profilies:
+default
+legacy
+"""
+        ;;
+      "note")		# Что такое psx note
+      echo -e """\
+\e[1;35mpsx note\e[m - add note
+Usage: psx note [--help] <note>
+"""
+        ;;
+      "time")		# Что такое psx time
+        echo -e """\
+  \e[1;35mpsx time\e[m - setup time on command prompt
+  Usage: psx time [--help] <set/unset>
+  """
+        ;;
+      "reset")		# Что такое psx reset
+        echo -e """\
+\e[1;35mpsx reset\e[m - reset command prompt settings
+Usage: psx reset [--help]
+"""
+        ;;
+  esac
+fi
