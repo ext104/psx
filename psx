@@ -9,7 +9,7 @@ function run(){
     then
         source ${psxfs['profiles']}/$profile.sh
     else
-        source ${psxfs['profiles']}/default.sh
+        source ${psxfs['profiles']}/legacy.sh
     fi
 }
 
