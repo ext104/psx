@@ -21,7 +21,7 @@ fi
 
 if [[ $timeSet ]]	# Установлено ли время
 then
-    infoField='[\t]'" $infoField"
+    infoField='\t'" $infoField"
 fi
 
 # Определение git-branch'а в текущей директории

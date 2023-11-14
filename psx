@@ -9,7 +9,7 @@ function run(){
     then
         source ${psxfs['profiles']}/$profile.sh
     else
-        source ${psxfs['profiles']}/legacy.sh
+        source ${psxfs['profiles']}/default.sh
     fi
 }
 
@@ -35,7 +35,7 @@ case $1 in
         esac
         ;;
     "reset" | "run")	# Запустить или перезапустить psx
-        profile=""
+        profile="$profile"
         run
         ;;
 esac
