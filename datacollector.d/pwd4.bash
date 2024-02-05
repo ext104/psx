@@ -1,4 +1,7 @@
 #!/bin/bash
+
+EmptyColor="\e[1;100m"
+
 # Получение текущего пути из встроенной переменной
 directories=(${PWD//\// })
 
@@ -16,6 +19,6 @@ do
     alterCD=$([ $alterCD -gt 0 ] && echo ".$alterCD" || echo "")
 
     # Вывод пути
-    echo -en "${directories[$i]}$color${alterCD}\e[m$color/\e[m"
+    echo -en "$EmptyColor${directories[$i]}$StyleOff$color${alterCD}\e[m$color/\e[m"
 done
 echo

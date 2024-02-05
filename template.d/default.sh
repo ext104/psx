@@ -24,12 +24,11 @@ then
     infoField='\t'" $infoField"
 fi
 
-# Определение git-branch'а в текущей директории
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
-branch="$color\$(parse_git_branch)$StyleOff"
-infoField="$branch $infoField"
+
+infoField="$color\$(parse_git_branch)$StyleOff $infoField"	# Добавление в поле значения branch
 
 hostname="$color`hostname -s`$StyleOff$Domain"	# Отображение fqdn машины в цвете
 currentDirectory="$Underline\w$StyleOff"	# Отображение текущей директории

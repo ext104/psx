@@ -3,6 +3,7 @@
 source ${psxfs['templates']}/default.sh
 
 altPWD="\$(source /home/main/psx/datacollector.d/pwd2.bash)"
+kubeContext="\$(source /home/main/psx/datacollector.d/kubecontext.bash)"
 
-PS1="$hostname$infoField\! $altPWD $promptSymbol"
+PS1="$hostname$infoField\! $kubeContext $altPWD $promptSymbol"
 PS2="$color> $StyleOff"
