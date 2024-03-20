@@ -1,3 +1,4 @@
+# Deprecated
 ### PSX - PS[1-2]
 
 Installation:
